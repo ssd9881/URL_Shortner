@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Page</title>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Server</h1>
+    <% urls.forEach(url => { %>
+        <li><%=url.shortID%>-<%=url.redirectUrl%>    </li>
+    <% }) %>
+    
+</header>
+
+<footer>
+    <p>&copy; 2024 Your Name. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

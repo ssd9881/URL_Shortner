@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Page</title>
+</head>
+<body>
+
+<header>
+    <!-- <h1>Welcome to Server</h1>
+    <% //urls.forEach(url => { %>
+        <li><%=// url.shortID %>   </li>
+    <% //}) %> -->
+    <h1>URL Shortner</h1>
+    <% if (locals.id) { %>
+     <p>URL Generated: http://localhost:8100/<%=id %></p>
+    <% } %>
+    <div>
+        <form method="POST" action="/url">
+            <label>Enter your original URl</label>
+            <input type="text" name="URL" placeholder="https://example.com">
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+</header>
+
+<footer>
+    <p>&copy; 2024 Your Name. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
