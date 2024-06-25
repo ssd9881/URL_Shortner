@@ -17,14 +17,15 @@ connectMongoDB('mongodb://localhost:27017/short-url').then(()=>console.log("Mong
 app.set("view engine","ejs")
 app.set("views",path.resolve('./views'))
 
-// app.get('/test',async(req,res)=>{
-//     const allURLS = await URL.find({})
-//     return res.render('list',{
-//         urls: allURLS
-//     })
-// })
-//routes
+app.get('/test',async(req,res)=>{
+    const allURLS = await URL.find({})
+    return res.render('home',{
+        urls: allURLS
+    })
+})
+// routes
 app.use('/url',UrlRoute)
+app.use('/',staticRouter)
 app.get('/:shortid',async (req,res)=>{
     const shortid = req.params.shortid;
     const entry = await URL.findOneAndUpdate(
@@ -32,8 +33,11 @@ app.get('/:shortid',async (req,res)=>{
         { $push: { visitHistory: { timestamp: Date.now() } } },
         { new: true }
     );
-    res.redirect(entry.redirectUrl)
+    if (entry) {
+        res.redirect(entry.redirectUrl);
+    } else {
+        res.status(404).send('URL not found');
+    }
 })
-app.use('/',staticRouter)
 
 app.listen(port,()=>console.log(`Server started at port ${port}`))
